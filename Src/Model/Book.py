@@ -24,4 +24,16 @@ class Book:
     def setTitle(self, title):
         self.title = title
         
+    def getIsCheckedOut(self):
+        return self.isCheckedOut
     
+    def setIsCheckedOut(self, isCheckedOut):
+        self.isCheckedOut = isCheckedOut
+        
+    def getCheckedOutTo(self):
+        return self.checkedOutTo
+    
+    def setCheckedOutTo(self, checkedOutTo):
+        self.checkedOutTo = checkedOutTo
+        
+        
