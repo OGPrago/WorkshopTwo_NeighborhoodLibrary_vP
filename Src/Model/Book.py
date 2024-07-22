@@ -36,4 +36,18 @@ class Book:
     def setCheckedOutTo(self, checkedOutTo):
         self.checkedOutTo = checkedOutTo
         
+    def checkOut(self, borrowerName):
+        if not self.isCheckedOut:
+            self.isCheckedOut = True
+            self.checkedOutTo = borrowerName
+            return True
+        else:
+            return False
         
+    def checkIn(self):
+        if self.isCheckedOut:
+            self.isCheckedOut = False
+            self.checkedOutTo = ""
+            return True
+        else:
+            return False
