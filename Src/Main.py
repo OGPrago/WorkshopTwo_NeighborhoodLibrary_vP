@@ -1,6 +1,7 @@
-from Model import Book
 import sys
 import os
+
+from Model.Book import Book
 
 def main():
     bookInventory = [
@@ -34,9 +35,9 @@ def main():
         Book(28, "150114426X", "The Long Walk", False, "")
     ]
 
-    bookInventory = [book1, book2, book3, book4, book5, book6, book7, book8, book9, book10,
-                     book11, book12, book13, book14, book15, book16, book17, book18, book19,
-                     book20, book21, book22, book23, book24, book25, book26, book27, book28]
+    book_inventory = [book1, book2, book3, book4, book5, book6, book7, book8, book9, book10,
+                      book11, book12, book13, book14, book15, book16, book17, book18, book19,
+                      book20, book21, book22, book23, book24, book25, book26, book27, book28]
 
     while True:
         print("Welcome to the Library")
