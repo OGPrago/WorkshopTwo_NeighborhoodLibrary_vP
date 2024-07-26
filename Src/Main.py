@@ -1,4 +1,6 @@
-from Book import Book
+from Model import Book
+import sys
+import os
 
 def main():
     bookInventory = [
@@ -31,3 +33,95 @@ def main():
         Book(27, "1982173610", "Billy Summers", False, ""),
         Book(28, "150114426X", "The Long Walk", False, "")
     ]
+
+    bookInventory = [book1, book2, book3, book4, book5, book6, book7, book8, book9, book10,
+                     book11, book12, book13, book14, book15, book16, book17, book18, book19,
+                     book20, book21, book22, book23, book24, book25, book26, book27, book28]
+
+    while True:
+        print("Welcome to the Library")
+        print("Please select an option: ")
+        print("\t1) Show available books")
+        print("\t2) Show checked out books")
+        print("\t3) Exit")
+
+        command = input().strip()
+
+        if command == "1":
+            print("Here are all the available books: ")
+            for book in bookInventory:
+                if book.available:
+                    print(book)
+
+            print("Would you like to check out a book?")
+            print("\t1) Yes")
+            print("\t2) No, go back to home screen")
+            checkoutOption = input().strip()
+
+            if checkoutOption == "1":
+                while True:
+                    print("Please enter the ID of the book you want to check out (or 0 to go back):")
+                    bookIdToCheckout = int(input().strip())
+
+                    if bookIdToCheckout == 0:
+                        break 
+
+                    for book in bookInventory:
+                        if book.id == bookIdToCheckout and book.available:
+                            print("Please enter your name to check out the book:")
+                            borrowerName = input().strip()
+
+                            if book.check_out(borrowerName):
+                                print(f"Successfully checked out to {borrowerName}")
+                            else:
+                                print("Book is already checked out.")
+                            break
+                    else:
+                        print("Invalid book ID or book is not available.")
+            elif checkoutOption == "2":
+                continue
+            else:
+                print("Command not found.")
+
+        elif command == "2":
+            print("Here are all books currently checked out: ")
+            hasCheckedOutBooks = False
+            for book in bookInventory:
+                if not book.available:
+                    print(book)
+                    hasCheckedOutBooks = True
+
+            if not hasCheckedOutBooks:
+                print("No books are currently checked out.")
+                continue
+
+            print("Please select an option:")
+            print("\tC) Check In a book")
+            print("\tX) Go back to home screen")
+            checkInOption = input().strip().upper()
+
+            if checkInOption == "C":
+                print("Please enter the ID of the book you want to check in:")
+                bookIdToCheckIn = int(input().strip())
+
+                for book in bookInventory:
+                    if book.id == bookIdToCheckIn and not book.available:
+                        book.check_in()
+                        print(f"Book ID {bookIdToCheckIn} has been returned and checked in.")
+                        break
+                else:
+                    print("Invalid book ID or book is not checked out.")
+            elif checkInOption == "X":
+                continue
+            else:
+                print("Command not found.")
+
+        elif command == "3":
+            print("Thank you for visiting the library!")
+            break
+
+        else:
+            print("Command not found.")
+
+if __name__ == "__main__":
+    main()
